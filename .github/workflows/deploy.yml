@@ -6,7 +6,6 @@ on:
       environment:
         description: "Deployment environment"
         required: false
-        default: 'development'
         type: choice
         options:
           - production
@@ -29,10 +28,6 @@ jobs:
         run: |
           if [ "${{ github.event.inputs.environment }}" == "production" ]; then
             echo "Deploying to production..."
-          elif [ "${{ github.event.inputs.environment }}" == "staging" ]; then
-            echo "Deploying to staging..."
-          elif [ "${{ github.event.inputs.environment }}" == "development" ]; then
-            echo "Deploying to development..."
           else
             echo "No input provided..."
           fi
