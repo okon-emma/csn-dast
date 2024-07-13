@@ -27,10 +27,12 @@ jobs:
     steps:
       - name: Project Init
         run: |
-          if [ "${{ github.event.inputs.environment }}" == "production" ]; then
+          ENVIRONMENT = "${{ github.event.inputs.environment }}"
+          if [ "$ENVIRONMENT == "production" ]; then
             echo "Deploying to production..."
           else
             echo "No input provided..."
+          fi
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: SAST Scan
