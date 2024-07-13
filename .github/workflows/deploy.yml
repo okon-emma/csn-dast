@@ -27,12 +27,8 @@ jobs:
     steps:
       - name: Project Init
         run: |
-          if [  "${{ github.event.inputs.environment }}" == "production" ]; then
+          if [ "${{ github.event.inputs.environment }}" == "production" ]; then
             echo "Deploying to production..."
-          elif [  "${{ github.event.inputs.environment }}" == "staging" ]; then
-            echo "Deploying to staging..."
-          elif [  "${{ github.event.inputs.environment }}" == "development" ]; then
-            echo "Deploying to development..."
           else
             echo "No input provided..."
       - name: Checkout repository
