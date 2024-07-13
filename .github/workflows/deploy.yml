@@ -1,7 +1,17 @@
-name: Sample Secure Deployment Workflow
+name: Deployment Workflow
 
 on:
   workflow_dispatch:
+    inputs:
+      environment:
+        description: "Deployment environment"
+        required: false
+        default: 'development'
+        type: choice
+        options:
+          - production
+          - staging
+          - development
   push:
     branches:
       - main
