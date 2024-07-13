@@ -12,6 +12,11 @@ on:
           - production
           - staging
           - development
+      version:
+        description: 'Version to deploy'
+        required: false
+        default: 'latest'
+    
   push:
     branches:
       - main
@@ -20,6 +25,16 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - name: Project Init
+        run: |
+          if [  "${{ github.event.inputs.environment }}" == "production" ]; then
+            echo "Deploying to production..."
+          elif [  "${{ github.event.inputs.environment }}" == "staging" ]; then
+            echo "Deploying to staging..."
+          elif [  "${{ github.event.inputs.environment }}" == "development" ]; then
+            echo "Deploying to development..."
+          else
+            echo "No input provided..."
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: SAST Scan
